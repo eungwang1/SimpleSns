@@ -1,3 +1,4 @@
+
 {
   "compilerOptions": {
     "baseUrl": ".",
@@ -7,7 +8,10 @@
       "@components/*": ["src/components/*"],
       "@lib/*": ["src/lib/*"],
       "@typings/*": ["src/typings/*"],
-      "@hooks/*": ["src/hooks/*"]
+      "@hooks/*": ["src/hooks/*"],
+      "@store/*" : ["src/store/*"],
+      "@slices/*" : ["src/slices/*"],
+      "@actions/*" : ["src/actions/*"]
     }
   }
 }
