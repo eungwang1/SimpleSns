@@ -3,17 +3,24 @@ import { store } from '@store/configureStore';
 import Globalstyles from './GlobalStyles';
 import { Provider } from 'react-redux';
 import theme from './theme';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <Globalstyles />
-        <Router />
+        <AppLayout>
+          <Router />
+        </AppLayout>
       </Provider>
     </ThemeProvider>
   );
 };
 
 export default App;
+
+const AppLayout = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+`;

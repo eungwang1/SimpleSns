@@ -22,11 +22,7 @@ const Globalstyles = createGlobalStyle`
     font: inherit;
     vertical-align: baseline;
   }
-  canvas{
-    height: 100%;
-    width : 100%;
-    overflow :hidden ;
-  }
+
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,
   footer, header, hgroup, main, menu, nav, section {
@@ -35,11 +31,6 @@ const Globalstyles = createGlobalStyle`
   /* HTML5 hidden-attribute fix for newer browsers */
   *[hidden] {
       display: none;
-  }
-  body {
-    position: fixed;
-    width: 100%;
-    height: 100%;
   }
   menu, ol, ul {
     list-style: none;
@@ -90,9 +81,7 @@ textarea:-ms-input-placeholder {
   font-weight : 600;
   font-size : 0.9rem;
 }
-/* :root {
-       --vh: 100%;
-   } */
+
 `;
 
 export default Globalstyles;
