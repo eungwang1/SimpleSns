@@ -4,17 +4,24 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.3",
+    "@faker-js/faker": "^6.3.1",
+    "@reduxjs/toolkit": "^1.8.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.0",
     "@types/node": "^16.11.33",
-    "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.3",
+    "axios": "^0.27.2",
+    "json-server": "^0.17.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-redux": "^8.0.1",
+    "react-router-dom": "^6.3.0",
     "styled-components": "^5.3.5",
+    "ts-node": "^10.7.0",
     "typescript": "^4.6.4",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -42,10 +49,13 @@
     ]
   },
   "devDependencies": {
+    "@types/react": "^18.0.9",
     "@types/styled-components": "^5.1.25",
+    "@types/uuid": "^8.3.4",
     "craco-alias": "^3.0.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.6.1"
+    "prettier": "^2.6.1",
+    "react-vac": "^0.2.2"
   }
 }
