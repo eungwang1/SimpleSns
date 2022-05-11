@@ -1,5 +1,6 @@
 import { SerializedError } from '@reduxjs/toolkit';
 
+export type likedState = 'unliked' | 'liked';
 export interface IPost {
   categoryPk: number;
   categoryName: string;
@@ -10,9 +11,10 @@ export interface IPost {
   likeCount: number;
   commentCount: number;
   imageUrl: string[];
-  writtenAt: string | Date;
+  writtenAt: string;
   writerNickName: string;
   writerProfileUrl: string;
+  likedState: likedState;
 }
 
 export interface IPostState {
@@ -23,6 +25,15 @@ export interface IPostState {
   getPostsLoading: boolean;
   getPostsDone: boolean;
   getPostsError: SerializedError | null;
+  getPostLoading: boolean;
+  getPostDone: boolean;
+  getPostError: SerializedError | null;
+  heartPostLoading: boolean;
+  heartPostDone: boolean;
+  heartPostError: SerializedError | null;
+  viewPostLoading: boolean;
+  viewPostDone: boolean;
+  viewPostError: SerializedError | null;
 }
 
 export type Category = {
