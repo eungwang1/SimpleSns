@@ -1,12 +1,12 @@
 import { IPost } from '@typings/customTypes';
 import React from 'react';
 import styled from 'styled-components';
-interface IHomeContentCardViewProps {
+interface IContentCardProps {
   post: IPost;
   idx: number;
   content: string;
 }
-const HomeContentCardView = ({ post, idx, content }: IHomeContentCardViewProps) => {
+const ContentCard = ({ post, idx, content }: IContentCardProps) => {
   return (
     <>
       <ContentHeader key={post.pk}>
@@ -18,17 +18,13 @@ const HomeContentCardView = ({ post, idx, content }: IHomeContentCardViewProps) 
       </ContentHeader>
       <ContentBody>
         <Title>{post.title}</Title>
-        <Content>
-          {content}
-          {`${post.content.slice(0, 40)} + 
-          ${post.content.length >= 40 ? '...' : ''}`}
-        </Content>
+        <Content>{content}</Content>
       </ContentBody>
     </>
   );
 };
 
-export default HomeContentCardView;
+export default ContentCard;
 
 const ContentHeader = styled.div`
   padding: 0 30px;
@@ -46,12 +42,12 @@ const ContentHeader = styled.div`
 const Nickname = styled.div`
   font-size: 0.75rem;
   font-weight: 700;
+  margin-top: 5px;
 `;
 
 const CategoryAndDate = styled.div`
   color: ${(props) => props.theme.palette.Gray03};
   font-size: 0.75rem;
-  margin-top: 3px;
 `;
 
 const ProfileImg = styled.img<{ idx: number }>`
