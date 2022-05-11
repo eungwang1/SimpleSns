@@ -1,8 +1,10 @@
-import { commentIcon, eyeIcon, thumbIcon } from '@assets/icon';
+import { commentIcon, eyeIcon, thumbIcon, writeIcon } from '@assets/icon';
+import Button from '@components/Common/Button';
 import { IPost } from '@typings/customTypes';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import HomeContentCardView from './HomeContentCardView';
 
 interface IHomeListViewProps {
   posts: IPost[];
@@ -13,27 +15,18 @@ const HomeListView = ({ posts }: IHomeListViewProps) => {
     <Layout>
       {posts.map((post, idx) => (
         <>
-          <ContentHeader key={post.pk}>
-            <ProfileImg idx={idx % 3} src={post.writerProfileUrl} alt="" width="32px" height="32px" />
-            <div className="flex-col">
-              <Nickname>{post.writerNickName}</Nickname>
-              <CategoryAndDate>{`${post.categoryName}・${post.writtenAt}`}</CategoryAndDate>
-            </div>
-          </ContentHeader>
           <StyledLink to={`/community/post/${post.pk}`}>
-            <ContentBody>
-              <Title>{post.title}</Title>
-              <Content>
-                {post.content.slice(0, 40)}
-                {post.content.length >= 40 ? '...' : ''}
-              </Content>
-              {post.imageUrl && (
-                <ImageList>
-                  <ContentImg src={post.imageUrl[0]} alt="" height="160px" width="85%" />
-                </ImageList>
-              )}
-            </ContentBody>
-
+            <HomeContentCardView
+              post={post}
+              idx={idx}
+              content={`${post.content.slice(0, 40)} + 
+          ${post.content.length >= 40 ? '...' : ''}`}
+            />
+            {post.imageUrl && (
+              <ImageList>
+                <ContentImg src={post.imageUrl[0]} alt="" height="160px" width="85%" />
+              </ImageList>
+            )}
             <ContentBottom>
               <div className="flex-row">
                 <img src={eyeIcon} alt="" width="16px" height="16px" />
@@ -51,6 +44,12 @@ const HomeListView = ({ posts }: IHomeListViewProps) => {
           </StyledLink>
         </>
       ))}
+      <Link to="/community/post/new">
+        <Button variant="primary" size="lg" radius="8px" position="fixed" style={{ bottom: '15px', right: '15px' }}>
+          글쓰기
+          <img src={writeIcon} alt="" style={{ marginLeft: '5px' }} />
+        </Button>
+      </Link>
     </Layout>
   );
 };
@@ -60,6 +59,7 @@ export default HomeListView;
 const Layout = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 const ContentHeader = styled.div`
@@ -124,7 +124,6 @@ const ContentBottom = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 10px;
-  position: relative;
   .flex-row {
     :first-child {
       margin-left: 30px;
