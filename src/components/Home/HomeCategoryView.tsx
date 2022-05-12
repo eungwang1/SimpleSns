@@ -1,5 +1,5 @@
 import React from 'react';
-import { starEmoji } from '@assets/emoji';
+import { starEmoji } from '@assets/icon';
 import Button from '@components/Common/Button';
 import { Category, IPost } from '@typings/customTypes';
 import styled from 'styled-components';
@@ -49,7 +49,7 @@ const Layout = styled.div`
   flex-direction: row;
   max-width: 100vw;
   overflow-x: scroll;
-  padding: 20px 0;
+  padding: 20px 30px;
   -ms-overflow-style: none; /* IE, Edge */
   scrollbar-width: none; /* Firefox */
   ::-webkit-scrollbar {

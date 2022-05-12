@@ -6,10 +6,7 @@ interface IPostSchema extends Pick<IPost, 'pk' | 'title' | 'content' | 'imageUrl
 
 export const postSchema = ({ pk, category, title, content, imageUrl }: IPostSchema) => {
   const now = new Date();
-  now.setDate(now.getHours() + 9);
-  const utcNow = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
-  const koreaTimeDiff = 9 * 60 * 60 * 1000;
-  const koreaNow = new Date(utcNow + koreaTimeDiff);
+  now.setHours(now.getHours() + 9);
   return {
     id: pk,
     categoryPk: category.categoryPk,

@@ -24,8 +24,8 @@ const ContentDetailView = ({ post, likeAction }: IContentDetailViewProps) => {
           </Link>
           <ContentCard post={post} idx={post.pk as number} content={post.content} />
           {post.imageUrl &&
-            post.imageUrl.map((src) => (
-              <ImageList>
+            post.imageUrl.map((src, idx) => (
+              <ImageList key={idx}>
                 <img src={src} alt="" />
               </ImageList>
             ))}

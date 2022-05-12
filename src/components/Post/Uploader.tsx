@@ -1,4 +1,4 @@
-import { closeIcon, pictureIcon } from '@assets/icon';
+import { closeIcon } from '@assets/icon';
 import React from 'react';
 import ImageUploading, { ImageListType } from 'react-images-uploading';
 import styled from 'styled-components';
@@ -58,6 +58,7 @@ const UploadBox = styled.div`
   align-items: center;
   border-radius: 5px;
   flex-shrink: 0;
+  cursor: pointer;
   span {
     font-size: 3rem;
     margin-bottom: 10px;

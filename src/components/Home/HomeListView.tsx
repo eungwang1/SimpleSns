@@ -1,11 +1,9 @@
-import { commentIcon, eyeIcon, thumbIcon, writeIcon } from '@assets/icon';
-import Button from '@components/Common/Button';
-import { IPost } from '@typings/customTypes';
 import React from 'react';
+import { commentIcon, eyeIcon, thumbIcon } from '@assets/icon';
+import { IPost } from '@typings/customTypes';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ContentCard from '../Common/ContentCard';
-
 interface IHomeListViewProps {
   posts: IPost[];
 }
@@ -15,12 +13,7 @@ const HomeListView = ({ posts }: IHomeListViewProps) => {
     <Layout>
       {posts.map((post, idx) => (
         <StyledLink key={post.pk} to={`/community/post/${post.pk}`}>
-          <ContentCard
-            post={post}
-            idx={idx}
-            content={`${post.content.slice(0, 40)}
-          ${post.content.length >= 40 ? '...' : ''}`}
-          />
+          <ContentCard post={post} idx={idx} content={post.content} compress="true" />
           {post.imageUrl && post.imageUrl.length >= 1 && (
             <ImageList>
               <ContentImg src={post.imageUrl[0]} alt="" height="160px" width="85%" />

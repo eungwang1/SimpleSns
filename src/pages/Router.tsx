@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Detail from './Detail';
+import DetailPage from './DetailPage';
 import Home from './Home';
-import Post from './Post';
+import PostPage from './PostPage';
 
 function Router() {
   return (
@@ -9,8 +9,8 @@ function Router() {
       <Routes>
         <Route path="/" element={<Navigate to="/community/list" />} />
         <Route path="/community/list" element={<Home />} />
-        <Route path="/community/post/:post_pk" element={<Detail />} />
-        <Route path="/community/post/new" element={<Post />} />
+        <Route path="/community/post/:post_pk" element={<DetailPage />} />
+        <Route path="/community/post/new" element={<PostPage />} />
       </Routes>
     </BrowserRouter>
   );

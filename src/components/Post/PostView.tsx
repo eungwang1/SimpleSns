@@ -3,7 +3,7 @@ import Dropdown from 'react-dropdown';
 import styled from 'styled-components';
 import { useFormContext } from 'react-hook-form';
 import Button from '@components/Common/Button';
-import ImageUploading, { ImageListType } from 'react-images-uploading';
+import { ImageListType } from 'react-images-uploading';
 import { backIcon, pictureIcon } from '@assets/icon';
 import { Link } from 'react-router-dom';
 import Uploader from './Uploader';
@@ -99,6 +99,10 @@ const StyledDropDown = styled(Dropdown)`
   }
   .Dropdown-arrow {
     top: 16px;
+  }
+  .Dropdown-control:hover {
+    box-shadow: 0 1px 0 rgb(0 0 0 / 6%);
+    box-shadow: none;
   }
 `;
 
