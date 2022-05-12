@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react';
-import styled, { css, DefaultTheme, FlattenInterpolation, ThemeProps } from 'styled-components';
+import styled, { css, CSSProperties, DefaultTheme, FlattenInterpolation, ThemeProps } from 'styled-components';
 
 type Size = 'sm' | 'md' | 'lg';
 type Variant = 'primary' | 'default';
@@ -40,7 +40,9 @@ interface ButtonProps {
   width?: string;
   height?: string;
   radius?: string;
+  position?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  style?: CSSProperties;
   type?: 'button' | 'submit';
 }
 
@@ -50,6 +52,7 @@ interface IStyledButton {
   width?: string;
   height?: string;
   radius?: string;
+  position?: string;
 }
 
 const Button = ({
@@ -61,23 +64,26 @@ const Button = ({
   width,
   height,
   radius,
+  position,
+  style,
 }: ButtonProps) => {
   const variantStyle = VARIANTS[variant];
   const sizeStyle = SIZES[size];
-  console.log(variantStyle);
-  console.log(sizeStyle);
   return (
-    <StyledButton {...{ onClick, type, sizeStyle, variantStyle, children, width, height, radius }}>
+    <StyledButton
+      className="custombutton"
+      {...{ style, onClick, type, sizeStyle, variantStyle, children, width, height, radius, position }}
+    >
       {children}
     </StyledButton>
   );
 };
 
 const StyledButton = styled.button<IStyledButton>`
-  position: relative;
   ${(p) => p.variantStyle};
   ${(p) => p.sizeStyle};
   width: ${(p) => p.width};
+  position: ${(p) => p.position};
   height: ${(p) => p.height};
   border-radius: ${(p) => p.radius};
   flex-shrink: 0;
