@@ -1,12 +1,13 @@
 import { closeIcon } from '@assets/icon';
-import React from 'react';
+import React, { useRef } from 'react';
 import ImageUploading, { ImageListType } from 'react-images-uploading';
 import styled from 'styled-components';
 interface IUploaderProps {
   onChangeImages: (imageList: ImageListType, addUpdateIndex: number[] | undefined) => void;
   images: ImageListType;
+  uploadRef: React.RefObject<HTMLDivElement>;
 }
-const Uploader = ({ images, onChangeImages }: IUploaderProps) => {
+const Uploader = ({ images, onChangeImages, uploadRef }: IUploaderProps) => {
   return (
     <ImageUploading multiple value={images} onChange={onChangeImages} maxNumber={6} dataURLKey="data_url">
       {({ imageList, onImageUpload, onImageRemove }) => (
@@ -20,7 +21,7 @@ const Uploader = ({ images, onChangeImages }: IUploaderProps) => {
             </ImageWrapper>
           ))}
           {imageList.length <= 5 && (
-            <UploadBox onClick={onImageUpload}>
+            <UploadBox ref={uploadRef} onClick={onImageUpload}>
               <span>+</span>
             </UploadBox>
           )}

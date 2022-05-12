@@ -1,4 +1,4 @@
-import React, { FormEvent, useCallback, useEffect, useState } from 'react';
+import React, { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { CATEGORIES, useCategory } from '@lib/useCategory';
 import { VACList } from 'react-vac';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
@@ -25,6 +25,7 @@ const Post = () => {
   const methods = useForm<FormData>();
   const { handleSubmit, setError, clearErrors } = methods;
   const navigate = useNavigate();
+  const uploadRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (category) {
       clearErrors('category');
@@ -55,6 +56,11 @@ const Post = () => {
     },
     [setImages]
   );
+  useEffect(() => {
+    if (uploadRef.current) {
+      uploadRef.current.scrollIntoView({ inline: 'end' });
+    }
+  }, [images]);
   const PostProps = {
     categoryName,
     setCategoryError: setCategoryError,
@@ -62,6 +68,7 @@ const Post = () => {
     onChangeImages,
     images,
     setImages,
+    uploadRef,
   };
 
   return (

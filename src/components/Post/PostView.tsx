@@ -14,6 +14,7 @@ interface IPostViewProps {
   images: ImageListType;
   setCategoryError: () => void;
   setImages: React.Dispatch<React.SetStateAction<ImageListType>>;
+  uploadRef: React.RefObject<HTMLDivElement>;
 }
 
 const contentPlaceHolder = `내용을 작성해주세요.${'\n'}
@@ -21,7 +22,14 @@ const contentPlaceHolder = `내용을 작성해주세요.${'\n'}
 ◎ 뉴스, 블로그 등 외부 콘텐츠는 https:// 링크를 붙여 넣으세요. 본문에 썸네일로 표시됩니다.
 ◎ 광고글 금지. 서비스 이용이 제한됩니다.`;
 
-const PostView = ({ categoryName, onChangeCategory, onChangeImages, images, setCategoryError }: IPostViewProps) => {
+const PostView = ({
+  uploadRef,
+  categoryName,
+  onChangeCategory,
+  onChangeImages,
+  images,
+  setCategoryError,
+}: IPostViewProps) => {
   const {
     register,
     formState: { errors },
@@ -59,7 +67,7 @@ const PostView = ({ categoryName, onChangeCategory, onChangeImages, images, setC
         />
         {errors.content && errors.content.type === 'required' && <Error>{errors.content.message}</Error>}
         {errors.content && errors.content.type === 'maxLength' && <Error>100자 이하로 작성해주세요.</Error>}
-        <Uploader onChangeImages={onChangeImages} images={images} />
+        <Uploader onChangeImages={onChangeImages} images={images} uploadRef={uploadRef} />
         <ImageCount>
           <img src={pictureIcon} alt="" />
           <span>{`사진(${images.length}/6)`}</span>
