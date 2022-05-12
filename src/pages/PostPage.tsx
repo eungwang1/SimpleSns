@@ -1,11 +1,19 @@
+import React, { useLayoutEffect } from 'react';
 import Post from '@components/Post/Post';
-import React from 'react';
+import { motion } from 'framer-motion';
+import { useMotionVariants } from '@lib/useMotionVariants';
+import useScroll from '@lib/useScroll';
 
 const PostPage = () => {
+  const { pageVariants } = useMotionVariants('left');
+  const { scrollToTop } = useScroll('DetailPage');
+  useLayoutEffect(() => {
+    scrollToTop();
+  }, []);
   return (
-    <div>
+    <motion.div key="Home" variants={pageVariants} initial="initial" animate="visible" exit="leaving">
       <Post />
-    </div>
+    </motion.div>
   );
 };
 
