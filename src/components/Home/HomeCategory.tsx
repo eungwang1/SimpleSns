@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import HomeCategoryView from './HomeCategoryView';
 import { VACList } from 'react-vac';
 import { useAppDispatch, useAppSelector } from '@store/hook';
@@ -13,9 +13,10 @@ const HomeCategory = () => {
     list: CATEGORIES,
     each: (data: Category) => ({
       ...data,
-      onFilter: () => {
+      // 카테고리 클릭시 필터
+      onFilter: useCallback(() => {
         dispatch(onCategoryFilter(data.categoryPk));
-      },
+      }, []),
       posts: filteredPosts ? filteredPosts : posts,
       currentCategory: filteredCategoryPk,
     }),

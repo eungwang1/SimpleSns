@@ -23,19 +23,36 @@ const Post = () => {
   const { categoryName, convert } = useCategory();
   const dispatch = useAppDispatch();
   const methods = useForm<FormData>();
-  const { handleSubmit, setError, clearErrors } = methods;
   const navigate = useNavigate();
+  const { handleSubmit, setError, clearErrors } = methods;
   const uploadRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (category) {
-      clearErrors('category');
-    }
-  }, [category]);
+
+  // Category Validation
   const setCategoryError = () => {
     if (!category) {
       setError('category', { type: 'required' }, { shouldFocus: true });
     }
   };
+  useEffect(() => {
+    if (category) {
+      clearErrors('category');
+    }
+  }, [category]);
+
+  // 이미지 업로드시, 업로드 버튼이 보이도록 스크롤 이동
+  useEffect(() => {
+    if (uploadRef.current) {
+      uploadRef.current.scrollIntoView({ inline: 'end' });
+    }
+  }, [images]);
+
+  const onChangeImages = useCallback(
+    (imageList: ImageListType) => {
+      setImages(imageList);
+    },
+    [setImages]
+  );
+
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const categoryObj = convert(category);
     const imageUrl = images.map((data) => data.data_url);
@@ -50,17 +67,7 @@ const Post = () => {
     scrollRemove();
     navigate('/community/list');
   };
-  const onChangeImages = useCallback(
-    (imageList: ImageListType) => {
-      setImages(imageList);
-    },
-    [setImages]
-  );
-  useEffect(() => {
-    if (uploadRef.current) {
-      uploadRef.current.scrollIntoView({ inline: 'end' });
-    }
-  }, [images]);
+
   const PostProps = {
     categoryName,
     setCategoryError: setCategoryError,
