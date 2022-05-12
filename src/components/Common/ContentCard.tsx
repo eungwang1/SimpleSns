@@ -1,12 +1,14 @@
 import { IPost } from '@typings/customTypes';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+type compress = 'true' | 'false';
 interface IContentCardProps {
   post: IPost;
   idx: number;
   content: string;
+  compress?: compress;
 }
-const ContentCard = ({ post, idx, content }: IContentCardProps) => {
+const ContentCard = ({ post, idx, content, compress = 'false' }: IContentCardProps) => {
   return (
     <>
       <ContentHeader key={post.pk}>
@@ -17,8 +19,8 @@ const ContentCard = ({ post, idx, content }: IContentCardProps) => {
         </div>
       </ContentHeader>
       <ContentBody>
-        <Title>{post.title}</Title>
-        <Content>{content}</Content>
+        <Title compress={compress}>{post.title}</Title>
+        <Content compress={compress}>{content}</Content>
       </ContentBody>
     </>
   );
@@ -61,16 +63,36 @@ const ContentBody = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.h1`
+const Title = styled.h1<{ compress: compress }>`
   padding: 0 30px;
   margin-top: 15px;
   font-size: 1rem;
   font-weight: 700;
+  word-break: break-all;
+  ${(props) =>
+    props.compress === 'true' &&
+    css`
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      line-height: 1.8;
+      overflow: hidden;
+    `}
 `;
 
-const Content = styled.p`
+const Content = styled.p<{ compress: compress }>`
   padding: 0 30px;
   margin-top: 8px;
   font-size: 0.875rem;
+  word-break: break-all;
   color: ${(props) => props.theme.palette.Gray04};
+  ${(props) =>
+    props.compress === 'true' &&
+    css`
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      line-height: 1.8;
+      overflow: hidden;
+    `}
 `;
