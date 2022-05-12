@@ -1,22 +1,24 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import HomeContainerView from './HomeContainerView';
 import { useAppDispatch, useAppSelector } from '@store/hook';
+import { useMotionVariants } from '@lib/useMotionVariants';
 import { getPosts } from '@actions/post';
+import Loading from '@components/Common/Loading';
 
 const HomeContainer = () => {
+  const { getPostsLoading, posts } = useAppSelector((state) => state.postSlice);
+  const { pageVariants } = useMotionVariants('right');
   const dispatch = useAppDispatch();
-  const { getPostsLoading } = useAppSelector((state) => state.postSlice);
-
   useEffect(() => {
-    dispatch(getPosts());
+    (async () => {
+      await dispatch(getPosts());
+    })();
   }, []);
-  if (getPostsLoading) return <div>로딩중...</div>;
-
-  return (
-    <>
-      <HomeContainerView />
-    </>
-  );
+  const HomeContainerProps = {
+    pageVariants,
+  };
+  if (getPostsLoading || !posts) return <Loading />;
+  return <HomeContainerView {...HomeContainerProps} />;
 };
 
 export default React.memo(HomeContainer);
