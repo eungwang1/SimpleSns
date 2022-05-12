@@ -38,11 +38,6 @@ const Globalstyles = createGlobalStyle`
   blockquote, q {
     quotes: none;
   }
-  body {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-  }
   blockquote:before, blockquote:after,
   q:before, q:after {
     content: '';

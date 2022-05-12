@@ -34,7 +34,6 @@ const PostView = ({
     register,
     formState: { errors },
   } = useFormContext();
-  console.log(errors);
   return (
     <Layout>
       <Nav>

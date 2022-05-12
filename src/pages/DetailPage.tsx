@@ -6,7 +6,7 @@ import { useMotionVariants } from '@lib/useMotionVariants';
 
 const DetailPage = () => {
   const { scrollToTop } = useScroll('DetailPage');
-  const { pageVariants } = useMotionVariants('left');
+  const { pageVariants } = useMotionVariants('top');
   useLayoutEffect(() => {
     scrollToTop();
   }, []);

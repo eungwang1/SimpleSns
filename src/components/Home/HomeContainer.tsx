@@ -7,7 +7,7 @@ import Loading from '@components/Common/Loading';
 
 const HomeContainer = () => {
   const { getPostsLoading, posts } = useAppSelector((state) => state.postSlice);
-  const { pageVariants } = useMotionVariants('right');
+  const { pageVariants } = useMotionVariants('top');
   const dispatch = useAppDispatch();
   useEffect(() => {
     (async () => {
