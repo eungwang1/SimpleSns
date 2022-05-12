@@ -52,21 +52,21 @@ const PostView = ({
       </Box>
       <Box>
         <StyledTextArea
-          {...register('title', { required: '제목을 작성해주세요' })}
+          {...register('title', { required: '제목을 작성해주세요', maxLength: 100 })}
           placeholder="제목을 작성해주세요"
           spellCheck="false"
           style={{ height: '28px' }}
         />
         {errors.title && errors.title.type === 'required' && <Error>{errors.title.message}</Error>}
+        {errors.title && errors.title.type === 'maxLength' && <Error>100자 이하로 작성해주세요.</Error>}
       </Box>
       <Box>
         <StyledTextArea
-          {...register('content', { required: '내용을 작성해주세요', maxLength: 100 })}
+          {...register('content', { required: '내용을 작성해주세요' })}
           placeholder={contentPlaceHolder}
           spellCheck="false"
         />
         {errors.content && errors.content.type === 'required' && <Error>{errors.content.message}</Error>}
-        {errors.content && errors.content.type === 'maxLength' && <Error>100자 이하로 작성해주세요.</Error>}
         <Uploader onChangeImages={onChangeImages} images={images} uploadRef={uploadRef} />
         <ImageCount>
           <img src={pictureIcon} alt="" />
