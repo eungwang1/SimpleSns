@@ -1,5 +1,4 @@
 import { IPost } from '@typings/customTypes';
-const now = new Date();
 export const useDate = (post: IPost) => {
   const today = new Date();
   const [year, month, date] = (post.writtenAt as string).split('-');
@@ -11,13 +10,15 @@ export const useDate = (post: IPost) => {
   const betweenTime = Math.floor((today.getTime() - writtenAt.getTime()) / 1000 / 60);
   const betweenTimeHour = Math.floor(betweenTime / 60);
   const convertDate = () => {
-    if (betweenTime < 1) return '방금 전';
-    if (betweenTime < 60) return `${betweenTime}분 전`;
-    if (betweenTimeHour < 24) return `${betweenTimeHour}시간 전`;
+    if (betweenTime >= 0) {
+      if (betweenTime < 1) return '방금 전';
+      if (betweenTime < 60) return `${betweenTime}분 전`;
+      if (betweenTimeHour < 24) return `${betweenTimeHour}시간 전`;
+    }
     return `${year.slice(2)}-${month}-${day}`;
   };
   const converDateForSorted = () => {
-    return new Date(`${year}-${month}-${day}`);
+    return writtenAt;
   };
   return { convertDate, converDateForSorted };
 };
