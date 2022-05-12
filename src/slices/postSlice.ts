@@ -94,6 +94,7 @@ export const postSlice = createSlice({
       .addCase(post.fulfilled, (state) => {
         state.postDone = true;
         state.postLoading = false;
+        state.filteredCategoryPk = 6;
       })
       .addCase(post.rejected, (state, action: ReturnType<typeof post.rejected>) => {
         state.postLoading = false;
