@@ -11,7 +11,7 @@ export interface IPost {
   likeCount: number;
   commentCount: number;
   imageUrl: string[];
-  writtenAt: string;
+  writtenAt: Date | string;
   writerNickName: string;
   writerProfileUrl: string;
   likedState: likedState;
@@ -28,6 +28,9 @@ export interface IPostState {
   getPostLoading: boolean;
   getPostDone: boolean;
   getPostError: SerializedError | null;
+  postLoading: boolean;
+  postDone: boolean;
+  postError: SerializedError | null;
   heartPostLoading: boolean;
   heartPostDone: boolean;
   heartPostError: SerializedError | null;

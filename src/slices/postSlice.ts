@@ -1,12 +1,12 @@
-import { getPost, getPosts, heartPost, viewPost } from '@actions/post';
-import { generateBetweenTime } from '@lib/generateBetweenTime';
+import { getPost, getPosts, heartPost, post, viewPost } from '@actions/post';
+import { useDate } from '@lib/useDate';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IPost, IPostState } from '@typings/customTypes';
 
 export const initialState: IPostState = {
   posts: [],
   filteredPosts: null,
-  filteredCategoryPk: 0,
+  filteredCategoryPk: 6,
   post: null,
   getPostsLoading: false,
   getPostsDone: false,
@@ -14,6 +14,9 @@ export const initialState: IPostState = {
   getPostLoading: false,
   getPostDone: false,
   getPostError: null,
+  postLoading: false,
+  postDone: false,
+  postError: null,
   heartPostLoading: false,
   heartPostDone: false,
   heartPostError: null,
@@ -53,8 +56,16 @@ export const postSlice = createSlice({
       .addCase(getPosts.fulfilled, (state, action: PayloadAction<IPost[]>) => {
         state.getPostsDone = true;
         state.getPostsLoading = false;
-        const posts = action.payload.map((post) => {
-          const writtenAt = generateBetweenTime(post);
+        let posts = action.payload;
+        // 시간순 정렬
+        posts.sort((a, b) => {
+          const { converDateForSorted: adate } = useDate(a);
+          const { converDateForSorted: bdate } = useDate(b);
+          return bdate().getTime() - adate().getTime();
+        });
+        posts = posts.map((post) => {
+          const { convertDate } = useDate(post);
+          const writtenAt = convertDate();
           return { ...post, writtenAt };
         });
         state.posts = posts;
@@ -69,12 +80,24 @@ export const postSlice = createSlice({
       .addCase(getPost.fulfilled, (state, action: PayloadAction<IPost>) => {
         state.getPostDone = true;
         state.getPostLoading = false;
-        const post = { ...action.payload, writtenAt: generateBetweenTime(action.payload) };
+        const { convertDate } = useDate(action.payload);
+        const post = { ...action.payload, writtenAt: convertDate() };
         state.post = post;
       })
       .addCase(getPost.rejected, (state, action: ReturnType<typeof getPost.rejected>) => {
         state.getPostLoading = false;
         state.getPostError = action.error;
+      })
+      .addCase(post.pending, (state) => {
+        state.postLoading = true;
+      })
+      .addCase(post.fulfilled, (state, action: PayloadAction<IPost>) => {
+        state.postDone = true;
+        state.postLoading = false;
+      })
+      .addCase(post.rejected, (state, action: ReturnType<typeof post.rejected>) => {
+        state.postLoading = false;
+        state.postError = action.error;
       })
       .addCase(heartPost.pending, (state) => {
         state.heartPostLoading = true;

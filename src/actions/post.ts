@@ -1,6 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IPostState, likedState } from '@typings/customTypes';
+import { IPost, IPostState, likedState } from '@typings/customTypes';
 import axios from 'axios';
+type dataForheart = {
+  post_pk: string;
+  likedState: likedState;
+};
 
 export const getPosts = createAsyncThunk('post/getPosts', async () => {
   try {
@@ -24,10 +28,14 @@ export const getPost = createAsyncThunk('post/getPost', async (pk: string) => {
   }
 });
 
-type dataForheart = {
-  post_pk: string;
-  likedState: likedState;
-};
+export const post = createAsyncThunk('post/post', async (data: any) => {
+  try {
+    const res = await axios.post('http://localhost:4000/posts', data);
+    return res.data[0];
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 export const heartPost = createAsyncThunk('post/heartPost', async (data: dataForheart, thunkAPI) => {
   const { postSlice } = thunkAPI.getState() as { postSlice: IPostState };
