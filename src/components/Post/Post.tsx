@@ -1,10 +1,10 @@
-import React, { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { CATEGORIES, useCategory } from '@lib/useCategory';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCategory } from '@lib/useCategory';
 import { VACList } from 'react-vac';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { ImageListType } from 'react-images-uploading';
 import PostView from './PostView';
-import { useAppDispatch, useAppSelector } from '@store/hook';
+import { useAppDispatch } from '@store/hook';
 import { v4 as uuidv4 } from 'uuid';
 import { postSchema } from '@lib/postSchema';
 import { getPosts, post } from '@actions/post';

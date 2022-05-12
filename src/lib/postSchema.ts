@@ -1,10 +1,10 @@
-import { IPost } from '@typings/customTypes';
+import { IPost, likedState } from '@typings/customTypes';
 
 interface IPostSchema extends Pick<IPost, 'pk' | 'title' | 'content' | 'imageUrl'> {
   category: Pick<IPost, 'categoryName' | 'categoryPk'>;
 }
 
-export const postSchema = ({ pk, category, title, content, imageUrl }: IPostSchema) => {
+export const postSchema = ({ pk, category, title, content, imageUrl }: IPostSchema): IPost => {
   const now = new Date();
   now.setHours(now.getHours() + 9);
   return {
@@ -16,7 +16,7 @@ export const postSchema = ({ pk, category, title, content, imageUrl }: IPostSche
     content,
     viewCount: 0,
     likeCount: 0,
-    likedState: 'unliked',
+    likedState: 'unliked' as likedState,
     commentCount: 0,
     imageUrl,
     writtenAt: now,

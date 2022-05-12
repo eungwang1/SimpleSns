@@ -2,6 +2,7 @@ import { SerializedError } from '@reduxjs/toolkit';
 
 export type likedState = 'unliked' | 'liked';
 export interface IPost {
+  id: number | string;
   categoryPk: number;
   categoryName: string;
   pk: number | string;
@@ -15,6 +16,7 @@ export interface IPost {
   writerNickName: string;
   writerProfileUrl: string;
   likedState: likedState;
+  count: number;
 }
 
 export interface IPostState {

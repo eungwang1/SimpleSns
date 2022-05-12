@@ -28,7 +28,7 @@ export const getPost = createAsyncThunk('post/getPost', async (pk: string) => {
   }
 });
 
-export const post = createAsyncThunk('post/post', async (data: any) => {
+export const post = createAsyncThunk('post/post', async (data: IPost) => {
   try {
     const res = await axios.post('http://localhost:4000/posts', data);
     return res.data[0];

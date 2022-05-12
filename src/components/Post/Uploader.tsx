@@ -1,5 +1,5 @@
 import { closeIcon } from '@assets/icon';
-import React, { useRef } from 'react';
+import React from 'react';
 import ImageUploading, { ImageListType } from 'react-images-uploading';
 import styled from 'styled-components';
 interface IUploaderProps {

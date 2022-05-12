@@ -91,7 +91,7 @@ export const postSlice = createSlice({
       .addCase(post.pending, (state) => {
         state.postLoading = true;
       })
-      .addCase(post.fulfilled, (state, action: PayloadAction<IPost>) => {
+      .addCase(post.fulfilled, (state) => {
         state.postDone = true;
         state.postLoading = false;
       })
