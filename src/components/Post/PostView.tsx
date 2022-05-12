@@ -36,7 +36,7 @@ const PostView = ({
   } = useFormContext();
   console.log(errors);
   return (
-    <>
+    <Layout>
       <Nav>
         <Link to="/community/list">
           <img src={backIcon} alt="" />
@@ -73,11 +73,17 @@ const PostView = ({
           <span>{`사진(${images.length}/6)`}</span>
         </ImageCount>
       </Box>
-    </>
+    </Layout>
   );
 };
 
 export default PostView;
+
+const Layout = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 
 const Error = styled.p`
   color: red;
