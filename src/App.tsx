@@ -3,6 +3,7 @@ import { store } from '@store/configureStore';
 import Globalstyles from './GlobalStyles';
 import { Provider } from 'react-redux';
 import theme from './theme';
+import 'react-dropdown/style.css';
 import styled, { ThemeProvider } from 'styled-components';
 
 const App = () => {

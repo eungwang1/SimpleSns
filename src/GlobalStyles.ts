@@ -67,19 +67,27 @@ const Globalstyles = createGlobalStyle`
   }
   input::-webkit-input-placeholder {
   font-weight : 600;
-  font-size : 0.9rem;
+  font-size : 0.875rem;
+  color : #B4B4B4;
+  line-height : 170%;
 }
 input:-ms-input-placeholder {
   font-weight : 600;
-  font-size : 0.9rem;
+  font-size : 0.875rem;
+  color : #B4B4B4;
+  line-height : 170%;
 }
 textarea::-webkit-input-placeholder {
   font-weight : 600;
-  font-size : 0.9rem;
+  font-size : 0.875rem;
+  color : #B4B4B4;
+  line-height : 170%;
 }
 textarea:-ms-input-placeholder {
   font-weight : 600;
-  font-size : 0.9rem;
+  font-size : 0.875rem;
+  color : #B4B4B4;
+  line-height : 170%;
 }
 
 `;

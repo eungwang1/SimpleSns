@@ -8,6 +8,7 @@ declare module 'styled-components' {
       Gray02: string;
       Gray03: string;
       Gray04: string;
+      backColorList: string[];
     };
   }
 }
