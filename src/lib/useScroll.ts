@@ -5,7 +5,6 @@ const useScroll = (page: string) => {
   const scrollSave = useCallback(() => {
     const scrollPos = window.scrollY + '';
     setScrollY(scrollPos);
-    console.log(scrollPos);
     return localStorage.setItem(`${page}_scroll_pos`, scrollPos);
   }, []);
 
