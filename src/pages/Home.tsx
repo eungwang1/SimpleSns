@@ -11,8 +11,6 @@ const Home = () => {
 };
 
 const Layout = styled.div`
-  height: 100vh;
-  overflow-y: scroll;
   -ms-overflow-style: none; /* IE, Edge */
   scrollbar-width: none; /* Firefox */
   ::-webkit-scrollbar {
