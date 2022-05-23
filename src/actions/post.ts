@@ -42,12 +42,12 @@ export const heartPost = createAsyncThunk('post/heartPost', async (data: dataFor
   const currentLikeCount = postSlice.post ? postSlice.post?.likeCount : 0;
   let likeCount = 0;
   let likedState: likedState = 'unliked';
-  if (data.likedState === 'unliked') {
-    likeCount = currentLikeCount + 1;
-    likedState = 'liked';
-  } else if (data.likedState === 'liked') {
+  if (data.likedState === 'liked') {
     likeCount = currentLikeCount - 1;
     likedState = 'unliked';
+  } else {
+    likeCount = currentLikeCount + 1;
+    likedState = 'liked';
   }
   try {
     const res = await axios.patch(`http://localhost:4000/posts/${data.post_pk}`, {

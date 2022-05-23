@@ -26,9 +26,9 @@ const ContentDetail = () => {
   }, []);
 
   // 좋아요 클릭 액션
-  const likeAction = useCallback(() => {
-    dispatch(heartPost({ post_pk, likedState }));
-  }, []);
+  const likeAction = async () => {
+    await dispatch(heartPost({ post_pk, likedState }));
+  };
 
   const ContentDetailProps = {
     post,
