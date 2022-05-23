@@ -1,7 +1,7 @@
 ### SimpleSNS
 
 json-server를 이용해, 프론트엔드 만으로 구성한 간단한 sns입니다.
-json-server 활용 및 VAC패턴 적용 연습을 목적으로 제작한 앱입니다. 
+json-server 활용 및 VAC패턴 적용을 연습하며 제작한 앱입니다.
 
 ### 주요기능
 
